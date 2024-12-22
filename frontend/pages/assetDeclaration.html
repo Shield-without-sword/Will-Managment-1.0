@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Declaration Form</title>
+<script src="https://cdn.tailwindcss.com"></script></head>
+
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center">Asset Declaration Form</h1>
+
+        <form id="assetDeclarationForm" class="max-w-4xl mx-auto space-y-8">
+            <!-- Real Estate Properties Section -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Real Estate Properties</h2>
+                <div id="propertyList" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Property Name/Description" class="border p-2 rounded">
+                        <input type="text" placeholder="Location" class="border p-2 rounded">
+                        <input type="number" placeholder="Estimated Value" class="border p-2 rounded">
+                        <input type="text" placeholder="Ownership Type" class="border p-2 rounded">
+                    </div>
+                </div>
+                <button type="button" onclick="addProperty()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                    Add Another Property
+                </button>
+            </div>
+
+            <!-- Bank Accounts Section -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Bank Accounts</h2>
+                <div id="bankList" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Bank Name" class="border p-2 rounded">
+                        <input type="text" placeholder="Account Type" class="border p-2 rounded">
+                        <input type="text" placeholder="Account Number" class="border p-2 rounded">
+                        <input type="number" placeholder="Current Balance" class="border p-2 rounded">
+                    </div>
+                </div>
+                <button type="button" onclick="addBank()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                    Add Another Bank Account
+                </button>
+            </div>
+
+            <!-- Investments Section -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Investments</h2>
+                <div id="investmentList" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <select class="border p-2 rounded">
+                            <option value="">Select Investment Type</option>
+                            <option value="stocks">Stocks</option>
+                            <option value="bonds">Bonds</option>
+                            <option value="mutualFunds">Mutual Funds</option>
+                            <option value="crypto">Cryptocurrency</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" placeholder="Investment Name" class="border p-2 rounded">
+                        <input type="number" placeholder="Current Value" class="border p-2 rounded">
+                        <input type="text" placeholder="Details" class="border p-2 rounded">
+                    </div>
+                </div>
+                <button type="button" onclick="addInvestment()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                    Add Another Investment
+                </button>
+            </div>
+
+            <!-- Other Assets Section -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Other Assets</h2>
+                <div id="otherAssetList" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Asset Description" class="border p-2 rounded">
+                        <input type="number" placeholder="Estimated Value" class="border p-2 rounded">
+                        <textarea placeholder="Additional Details" class="border p-2 rounded col-span-2"></textarea>
+                    </div>
+                </div>
+                <button type="button" onclick="addOtherAsset()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                    Add Another Asset
+                </button>
+            </div>
+
+            <button type="submit" class="w-full bg-green-500 text-white px-6 py-3 rounded-lg font-semibold">
+                Submit Asset Declaration
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function addProperty() {
+            const propertyList = document.getElementById('propertyList');
+            const propertyDiv = document.createElement('div');
+            propertyDiv.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 mt-4';
+            propertyDiv.innerHTML = `
+                <input type="text" placeholder="Property Name/Description" class="border p-2 rounded">
+                <input type="text" placeholder="Location" class="border p-2 rounded">
+                <input type="number" placeholder="Estimated Value" class="border p-2 rounded">
+                <input type="text" placeholder="Ownership Type" class="border p-2 rounded">
+                <button type="button" onclick="this.parentElement.remove()" class="col-span-2 bg-red-500 text-white px-4 py-2 rounded">
+                    Remove Property
+                </button>
+            `;
+            propertyList.appendChild(propertyDiv);
+        }
+
+        function addBank() {
+            const bankList = document.getElementById('bankList');
+            const bankDiv = document.createElement('div');
+            bankDiv.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 mt-4';
+            bankDiv.innerHTML = `
+                <input type="text" placeholder="Bank Name" class="border p-2 rounded">
+                <input type="text" placeholder="Account Type" class="border p-2 rounded">
+                <input type="text" placeholder="Account Number" class="border p-2 rounded">
+                <input type="number" placeholder="Current Balance" class="border p-2 rounded">
+                <button type="button" onclick="this.parentElement.remove()" class="col-span-2 bg-red-500 text-white px-4 py-2 rounded">
+                    Remove Bank Account
+                </button>
+            `;
+            bankList.appendChild(bankDiv);
+        }
+
+        function addInvestment() {
+            const investmentList = document.getElementById('investmentList');
+            const investmentDiv = document.createElement('div');
+            investmentDiv.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 mt-4';
+            investmentDiv.innerHTML = `
+                <select class="border p-2 rounded">
+                    <option value="">Select Investment Type</option>
+                    <option value="stocks">Stocks</option>
+                    <option value="bonds">Bonds</option>
+                    <option value="mutualFunds">Mutual Funds</option>
+                    <option value="crypto">Cryptocurrency</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" placeholder="Investment Name" class="border p-2 rounded">
+                <input type="number" placeholder="Current Value" class="border p-2 rounded">
+                <input type="text" placeholder="Details" class="border p-2 rounded">
+                <button type="button" onclick="this.parentElement.remove()" class="col-span-2 bg-red-500 text-white px-4 py-2 rounded">
+                    Remove Investment
+                </button>
+            `;
+            investmentList.appendChild(investmentDiv);
+        }
+
+        function addOtherAsset() {
+            const otherAssetList = document.getElementById('otherAssetList');
+            const otherAssetDiv = document.createElement('div');
+            otherAssetDiv.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 mt-4';
+            otherAssetDiv.innerHTML = `
+                <input type="text" placeholder="Asset Description" class="border p-2 rounded">
+                <input type="number" placeholder="Estimated Value" class="border p-2 rounded">
+                <textarea placeholder="Additional Details" class="border p-2 rounded col-span-2"></textarea>
+                <button type="button" onclick="this.parentElement.remove()" class="col-span-2 bg-red-500 text-white px-4 py-2 rounded">
+                    Remove Asset
+                </button>
+            `;
+            otherAssetList.appendChild(otherAssetDiv);
+        }
+
+        // Add this to your assetDeclaration.html script section
+            document.getElementById('assetDeclarationForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // Collect form data
+                const formData = {
+                    realEstateProperties: Array.from(document.getElementById('propertyList').children).map(property => ({
+                        propertyName: property.querySelector('input[placeholder="Property Name/Description"]').value,
+                        location: property.querySelector('input[placeholder="Location"]').value,
+                        estimatedValue: Number(property.querySelector('input[placeholder="Estimated Value"]').value),
+                        ownershipType: property.querySelector('input[placeholder="Ownership Type"]').value
+                    })),
+                    bankAccounts: Array.from(document.getElementById('bankList').children).map(bank => ({
+                        bankName: bank.querySelector('input[placeholder="Bank Name"]').value,
+                        accountType: bank.querySelector('input[placeholder="Account Type"]').value,
+                        accountNumber: bank.querySelector('input[placeholder="Account Number"]').value,
+                        currentBalance: Number(bank.querySelector('input[placeholder="Current Balance"]').value)
+                    })),
+                    investments: Array.from(document.getElementById('investmentList').children).map(investment => ({
+                        investmentType: investment.querySelector('select').value,
+                        investmentName: investment.querySelector('input[placeholder="Investment Name"]').value,
+                        currentValue: Number(investment.querySelector('input[placeholder="Current Value"]').value),
+                        details: investment.querySelector('input[placeholder="Details"]').value
+                    })),
+                    otherAssets: Array.from(document.getElementById('otherAssetList').children).map(asset => ({
+                        description: asset.querySelector('input[placeholder="Asset Description"]').value,
+                        estimatedValue: Number(asset.querySelector('input[placeholder="Estimated Value"]').value),
+                        additionalDetails: asset.querySelector('textarea').value
+                    }))
+                };
+
+                try {
+                    const response = await fetch('http://localhost:5000/api/assets/declare', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert('Asset declaration saved successfully!');
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Failed to save asset declaration');
+                }
+            });
+    </script>
+</body>
+
+</html>

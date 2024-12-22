@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+    <div class="max-w-7xl mx-auto p-6">
+        <!-- Supporting Documents Section -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Supporting Documents</h2>
+            <div id="documentUploadSection" class="space-y-4">
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <label class="cursor-pointer block">
+                        <input 
+                            type="file" 
+                            id="documentInput" 
+                            multiple 
+                            class="hidden" 
+                            accept="application/pdf,image/*"
+                            onchange="handleFileUpload(event)"
+                        >
+                        <div class="flex justify-center">
+                            <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600">Click to upload or drag and drop</p>
+                        <p class="text-xs text-gray-500">PDF, PNG, JPG, GIF up to 10MB</p>
+                    </label>
+                </div>
+                <div id="uploadProgress" class="hidden">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                    <p class="text-center text-sm text-gray-600 mt-2">Uploading to IPFS...</p>
+                </div>
+                <div id="uploadedFiles" class="mt-4 space-y-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle file upload
+        function handleFileUpload(event) {
+            const files = event.target.files;
+            if (files.length === 0) return;
+
+            // Show upload progress
+            document.getElementById('uploadProgress').classList.remove('hidden');
+            const progressBar = document.querySelector('#uploadProgress .bg-blue-600');
+            let progress = 0;
+
+            // Simulate file upload progress
+            const interval = setInterval(() => {
+                if (progress < 100) {
+                    progress += 10;
+                    progressBar.style.width = progress + '%';
+                } else {
+                    clearInterval(interval);
+                    uploadToIPFS(files);
+                }
+            }, 500);
+        }
+
+        // Upload files to IPFS via the backend API
+        function uploadToIPFS(files) {
+            const formData = new FormData();
+
+            // Directly append the file without converting to base64
+            Array.from(files).forEach(file => {
+                formData.append('file', file); // Append the file directly to form data
+            });
+
+            sendFilesToBackend(formData);
+        }
+
+        // Send files to backend
+        function sendFilesToBackend(formData) {
+            fetch('http://localhost:5000/upload', { // Use the correct URL of your server
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token') // Assuming token is stored in localStorage
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.fileHashes) {
+                    displayUploadedFiles(data.fileHashes);
+                }
+            })
+            .catch(error => console.error('Error uploading document:', error));
+        }
+
+        // Display uploaded files
+        function displayUploadedFiles(fileHashes) {
+            const uploadedFilesContainer = document.getElementById('uploadedFiles');
+            uploadedFilesContainer.innerHTML = ''; // Clear any existing files
+
+            fileHashes.forEach(fileHash => {
+                const fileItem = document.createElement('div');
+                fileItem.classList.add('flex', 'items-center', 'space-x-2');
+
+                const fileName = document.createElement('span');
+                fileName.classList.add('text-sm', 'text-gray-700');
+                fileName.textContent = `IPFS Hash: ${fileHash}`;
+
+                fileItem.appendChild(fileName);
+                uploadedFilesContainer.appendChild(fileItem);
+            });
+
+            // Hide the upload progress section after the upload
+            document.getElementById('uploadProgress').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
