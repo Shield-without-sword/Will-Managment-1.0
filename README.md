@@ -48,7 +48,7 @@ Welcome to **Will Chain** – a blockchain-powered platform that revolutionizes 
 ## 📸 **Screenshots**  
 
 ### 1️⃣ Landing Page  
-![Landing Page](./Screenshots/landing_page.png)  
+![Landing Page](Screenshots/landing_page.png)  
 
 ### 2️⃣ Dashboard  
 ![Dashboard](./screenshots/dashboard.png)  
