@@ -48,19 +48,19 @@ Welcome to **Will Chain** – a blockchain-powered platform that revolutionizes 
 ## 📸 **Screenshots**  
 
 ### 1️⃣ Landing Page  
-![Landing Page](Screenshots/landing_page.png)  
+![Landing Page](./Screenshot/landing_page.png)  
 
 ### 2️⃣ Dashboard  
-![Dashboard](./screenshots/dashboard.png)  
+![Dashboard](./Screenshot/dashboard.png)  
 
 ### 3️⃣ Will Creation  
-![Beneficiary Management](./Screenshots/will.png)  
+![Beneficiary Management](./Screenshot/will.png)  
 
 ### 4️⃣ Assets Declaration 
-![Smart Contract Execution](./Screenshots/asset.png)  
+![Smart Contract Execution](./Screenshot/asset.png)  
 
 ### 5️⃣ Admin Panel
-![Lawyer Verification](./Screenshots/admin.png)  
+![Lawyer Verification](./Screenshot/admin.png)  
 
 ### 6️⃣ Decentralized Storage  
 ![Decentralized Storage](./Screenshots/decentralized_storage.png)  
