@@ -62,12 +62,7 @@ Welcome to **Will Chain** – a blockchain-powered platform that revolutionizes 
 ### 5️⃣ Admin Panel
 ![Lawyer Verification](./Screenshots/admin.jpeg)  
 
-### 6️⃣ Decentralized Storage  
-![Decentralized Storage](./Screenshots/decentralized_storage.png)  
-
 ---
 
 ## 📜 **Credits**  
 - **Developers**: [@Shubham_Bendre](https://github.com/Shubham-Bendre), [@Malhar_Singh](https://github.com/Malhar2400), [@Yash_Chougule](https://github.com/YxASH)
-
----
